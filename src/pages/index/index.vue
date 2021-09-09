@@ -4,7 +4,12 @@
       <img src alt />
     </view>
     <span>请输入车牌号</span>
-    <input-car :text="state.carNumber" @click="handleClick('text', state.msg2, true)" />
+    <input-car :text-list="car.number" @click="handleClick('text', state.msg2, true)" />
+    <div class="details">
+      <span v-for="(value,index) in car.details" :key="index">
+        {{ value }}
+      </span>
+    </div>
     <keyboard-car
         v-model:visible="state.keyboardVisible"
         :data-index="state.carNumber.length"
@@ -28,7 +33,8 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import { reactive } from 'vue';
+import { reactive, computed } from 'vue';
+import { getFirstName } from '../../car/first';
 import KeyboardCar from '../../component/keyboard-car.vue';
 import InputCar from '../../component/input-car.vue';
 
@@ -59,8 +65,8 @@ const input = (msg: string) => {
   if (state.carNumber.length < 7) {
     state.carNumber += msg;
   }
-  state.msg = msg;
-  state.show = true;
+  // state.msg = msg;
+  // state.show = true;
   //切换键盘
 };
 const del = () => {
@@ -68,6 +74,24 @@ const del = () => {
     state.carNumber = state.carNumber.slice(0, state.carNumber.length - 1);
   }
 };
+const car = computed(() => {
+  const list = state.carNumber?.split('');
+  //大于7位,截取前七位
+  if (list.length > 7) {
+    return {
+      number: list.slice(0, 7),
+      details: getFirstName(list.slice(0, 7)),
+    };
+  }
+  //小于7位,补充到7位
+  if (list.length < 7) {
+    const len = 7 - list.length;
+    for (let i = 0; i < len; i++) {
+      list.push('');
+    }
+  }
+  return { number: list, details: getFirstName(list) };
+});
 
 </script>
 
@@ -77,5 +101,13 @@ const del = () => {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+}
+
+.details {
+  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: baseline;
 }
 </style>

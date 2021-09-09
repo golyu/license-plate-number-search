@@ -18,7 +18,7 @@
         </view>
       </view>
     </view>
-    <view class="keyboards" v-else>
+    <view class="keyboards" v-if="props.dataIndex!==0">
       <view class="rows" v-for="(rows,index) in arr" :key="index">
         <view v-for="(item,index2) in rows" :key="index2">
           <view :class="`btn2 ${item.type==='value'?'':' btn-reverse'}`"
@@ -242,5 +242,4 @@ export default {
   height: 35px;
   line-height: 35px;
 }
-
 </style>

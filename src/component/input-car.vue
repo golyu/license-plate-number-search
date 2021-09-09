@@ -1,32 +1,16 @@
 <template>
   <view class="root">
-    <div v-for="(item,index) in textList" :key="index">
+    <div v-for="(item,index) in props.textList" :key="index">
       <span>{{ item }}</span>
     </div>
   </view>
 </template>
 <script setup lang="ts">
-import { computed } from 'vue';
 
 const props = withDefaults(defineProps<{
-  text: string;
+  textList: string[];
 }>(), {
-  text: '京A00001',//新能源车牌号也只需要输入前7位
-});
-const textList = computed(() => {
-  const list = props.text?.split('');
-  //大于7位,截取前七位
-  if (list.length > 7) {
-    return list.slice(0, 7);
-  }
-  //小于7位,补充到7位
-  if (list.length < 7) {
-    const len = 7 - list.length;
-    for (let i = 0; i < len; i++) {
-      list.push('');
-    }
-  }
-  return list;
+  textList: '京A00001'.split(''),//新能源车牌号也只需要输入前7位
 });
 </script>
 <script lang="ts">

@@ -44,6 +44,7 @@ export const keyData: Item[][] = [
     { type: 'value', key: 'K' },
     { type: 'value', key: 'L' },
   ], [
+    { type: 'lock', key: '' },
     { type: 'value', key: 'Z' },
     { type: 'value', key: 'X' },
     { type: 'value', key: 'C' },
