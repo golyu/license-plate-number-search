@@ -21,7 +21,8 @@ export const keyData: Item[][] = [
     { type: 'value', key: '8' },
     { type: 'value', key: '9' },
     { type: 'value', key: '0' },
-  ], [
+  ],
+  [
     { type: 'value', key: 'Q' },
     { type: 'value', key: 'W' },
     { type: 'value', key: 'E' },

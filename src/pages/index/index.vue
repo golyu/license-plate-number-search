@@ -4,10 +4,10 @@
       <img src alt />
     </view>
     <span>请输入车牌号</span>
-    <keyboard-input :text="state.carNumber" @click="handleClick('text', state.msg2, true)" />
+    <input-car :text="state.carNumber" @click="handleClick('text', state.msg2, true)" />
     <keyboard-car
         v-model:visible="state.keyboardVisible"
-        :data-index="state.dataIndex"
+        :data-index="state.carNumber.length"
         @delete="del"
         @close="closeKeyboard"
         @input="input"
@@ -28,9 +28,9 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import { reactive, watch } from 'vue';
+import { reactive } from 'vue';
 import KeyboardCar from '../../component/keyboard-car.vue';
-import KeyboardInput from '../../component/keyboard-input.vue';
+import InputCar from '../../component/input-car.vue';
 
 const state = reactive({
   msg: '?',
@@ -40,7 +40,6 @@ const state = reactive({
   cover: false,
   keyboardVisible: true,
   carNumber: '',
-  dataIndex: 0,
 });
 
 // const keyBoardCarRef = ref<NonNullable<KeyboardCarType>>();
@@ -69,18 +68,6 @@ const del = () => {
     state.carNumber = state.carNumber.slice(0, state.carNumber.length - 1);
   }
 };
-
-watch(() => state.carNumber, (value) => {
-  switch (value.length) {
-    case 0:
-      state.dataIndex = 0;
-      break;
-    case 1:
-      state.dataIndex = 1;
-      break;
-    default:
-  }
-});
 
 </script>
 

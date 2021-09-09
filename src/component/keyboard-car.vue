@@ -46,14 +46,14 @@ const props = withDefaults(defineProps<{
   maxLen?: number,
 }>(), {
   disableData: false,
-  dataIndex: 0,
+  dataIndex: 0,//车牌的第几位
   visible: false,
   value: '',
   maxLen: 7,// 车牌号一般7位数
 });
 const show = ref(props.visible);
 const emit = defineEmits(['input', 'close', 'delete', 'update:value']);
-const arr = ref<Item[][]>(props.dataIndex === 0 ? abbreviation : keyData);
+const arr = ref<Item[][]>(props.dataIndex === 0 ? abbreviation : props.dataIndex === 1 ? keyData.slice(1) : keyData);
 
 const closeBoard = () => {
   emit('close');
@@ -63,7 +63,7 @@ watch(() => props.visible, (value) => {
   show.value = value;
 });
 watch(() => props.dataIndex, (value) => {
-  arr.value = value === 0 ? abbreviation : keyData;
+  arr.value = value === 0 ? abbreviation : value === 1 ? keyData.slice(1) : keyData;
 });
 
 const onTouchStart = (item: Item, event: any) => {
