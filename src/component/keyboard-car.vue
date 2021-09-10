@@ -22,7 +22,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, defineEmits, watch } from 'vue';
+import { ref, watch } from 'vue';
 import { keyData, abbreviation, Item } from './keyboard-car-data';
 
 const props = withDefaults(defineProps<{

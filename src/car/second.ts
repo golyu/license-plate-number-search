@@ -636,7 +636,39 @@ export const hubei = (car: string[]): string[] => {
     case 'C':
       return ['十堰市'];
     case 'D':
-      return ['荆州市'];
+      let t2 = car[2] || '';
+      switch (t2) {
+        case '0':
+        case '8':
+        case 'A':
+          t2 = '沙市区';
+          break;
+        case '1':
+        case 'B':
+          t2 = '荆州区';
+          break;
+        case '2':
+          t2 = '江陵县';
+          break;
+        case '3':
+          t2 = '松滋市';
+          break;
+        case '4':
+          t2 = '公安县';
+          break;
+        case '5':
+          t2 = '石首市';
+          break;
+        case '6':
+          t2 = '监利市';
+          break;
+        case '7':
+          t2 = '洪湖市';
+          break;
+        default:
+          t2 = '';
+      }
+      return ['荆州市', t2];
     case 'E':
       return ['宜昌市'];
     case 'F':
