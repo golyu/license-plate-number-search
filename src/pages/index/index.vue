@@ -104,10 +104,17 @@ const car = computed(() => {
 }
 
 .details {
+  margin-top: 10px;
   margin-left: 30px;
+  margin-right: 30px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  align-items: baseline;
+  align-items: flex-start;
+
+  span {
+    font-size: 20px;
+    color: #666;
+  }
 }
 </style>

@@ -5,20 +5,7 @@
       @click-overlay="closeBoard()"
       overlay-class="nut-numberkeyboard-overlay"
   >
-    <view class="keyboards" v-if="props.dataIndex===0">
-      <!--  列  -->
-      <view class="rows" v-for="(rows,index) in arr" :key="index">
-        <view v-for="(item,index2) in rows" :key="index2">
-          <view :class="`btn ${item.type==='value'?'':' btn-reverse'}`"
-                @touchstart="(event)=>onTouchStart(item,event)"
-          >
-            <template v-if="item.type==='value'">{{ item.key }}</template>
-            <image v-else-if="item.type==='lock'" style='width: 30px;height: 35px' src="../imgs/keyboard.svg" />
-          </view>
-        </view>
-      </view>
-    </view>
-    <view class="keyboards" v-if="props.dataIndex!==0">
+    <view class="keyboards">
       <view class="rows" v-for="(rows,index) in arr" :key="index">
         <view v-for="(item,index2) in rows" :key="index2">
           <view :class="`btn2 ${item.type==='value'?'':' btn-reverse'}`"

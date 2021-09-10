@@ -58,6 +58,7 @@ export default {
   }
 
   > div:last-child {
+    transform: rotateZ(360deg);
     border-right: 2px !important;
     border-radius: 0 25px 25px 0;
   }
